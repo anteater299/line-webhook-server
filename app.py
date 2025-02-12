@@ -48,25 +48,25 @@ def webhook():
                             "columns": [
                                 {
                                     "thumbnailImageUrl": "https://example.com/item1.jpg",
-                                    "title": "商品 1",
-                                    "text": "這是商品 1 的簡介",
+                                    "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
+                                    "text": "好吃水果",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://example.com/item1"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=e88a81727c47914204f9"
                                         }
                                     ]
                                 },
                                 {
                                     "thumbnailImageUrl": "https://example.com/item2.jpg",
-                                    "title": "商品 2",
-                                    "text": "這是商品 2 的簡介",
+                                    "title": "【UCC】 117精緻即溶咖啡-無糖2gx100入/盒",
+                                    "text": "好喝咖啡",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://example.com/item2"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=3f8f6735bbf59907f59b"
                                         }
                                     ]
                                 }
