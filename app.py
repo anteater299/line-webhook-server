@@ -197,7 +197,7 @@ def webhook():
                 elif user_message == "商品查詢":
                     reply_message(reply_token, generate_carousel())
 
-    return "OK"
+    return jsonify({"status": "ignored"})  # 其他訊息不處理
 
 @app.route("/push", methods=["POST"])
 def send_push_message():
