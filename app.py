@@ -199,7 +199,7 @@ def webhook():
 
     return "OK"
 
-@app.route("/push", methods=["POST"])
+@app.route("/webhook", methods=["POST"])
 def send_push_message():
     """透過 Push API 推送多頁圖文訊息"""
     data = request.get_json()
