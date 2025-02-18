@@ -45,7 +45,7 @@ def generate_carousel():
                 "type": "carousel",
                 "columns": [
                    {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/198284/image/MAI_174423644_X700X700.jpg",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/453119_204460_51316409.jpg",
                                     "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
                                     "text": "$2888",
                                     "actions": [
