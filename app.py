@@ -40,7 +40,7 @@ def generate_carousel():
     return [
         {
             "type": "template",
-            "altText": "這是多頁圖文訊息",
+            "altText": "i划算推薦好康報你知",
             "template": {
                 "type": "carousel",
                 "columns": [
@@ -57,7 +57,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/166928/image/MAI_154734938_X700X700.jpg",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/357119_166928_A50A7951.jpg",
                                     "title": "【韓國innisfree】無油無慮礦物控油蜜粉5g [買1送1]",
                                     "text": "$458",
                                     "actions": [
@@ -69,7 +69,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/202232/image/MAI_192711319_X700X700.jpg",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/447984_202232_0041E1A6.jpg",
                                     "title": "米樂爆米花- 史努比花季寫生罐爆米花(10入/箱)-焦糖",
                                     "text": "$1780",
                                     "actions": [
@@ -81,7 +81,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/202226/image/MAI_183454795_X400X400.jpg?uts=175802593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/447971_202226_65F95E7C.jpg",
                                     "title": "【超比食品】燕麥脆片-微甜草莓x6包(100g/包)",
                                     "text": "$699",
                                     "actions": [
@@ -93,7 +93,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/201025/image/MAI_111508012_X400X400.jpg?uts=175802593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/445397_201025_ED5C7F70.jpg",
                                     "title": "時髦的安吉小姐 可微波陶瓷碗(黃/白) 含蓋",
                                     "text": "$249",
                                     "actions": [
@@ -105,7 +105,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/199996/image/MAI_152944914_X400X400.jpg?uts=175802593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/442601_199996_8D6A0FE6.jpg",
                                     "title": "寶可夢手提燜燒罐(三色選)",
                                     "text": "$593",
                                     "actions": [
@@ -117,7 +117,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/195847/image/MAI_153641158_X400X400.jpg?uts=175802593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/432988_195847_9F706643.jpg",
                                     "title": "【利捷維】有酵超級B群膜衣錠 60錠",
                                     "text": "$429",
                                     "actions": [
@@ -129,7 +129,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/178160/image/MAI_171909057_X400X400.png?uts=175802593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/381549_178160_B8DA26E1.jpg",
                                     "title": "【羅技 Logitech】Pebble 2 Combo 無線藍芽 鍵盤滑鼠組",
                                     "text": "$1,790",
                                     "actions": [
@@ -141,7 +141,7 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/198284/image/MAI_174423644_X700X700.jpg",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/453119_204460_51316409.jpg",
                                     "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
                                     "text": "$2888",
                                     "actions": [
@@ -153,7 +153,7 @@ def generate_carousel():
                                     ]
                                 },                                                           
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/193074/image/MAI_134443667_X700X700.jpg",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/424486_193074_8385A54E.jpg",
                                     "title": "【UCC】 117精緻即溶咖啡-無糖2gx100入/盒",
                                     "text": "$499",
                                     "actions": [
@@ -194,7 +194,7 @@ def webhook():
                     reply_message(reply_token, [ {"type": "text", "text": f"本群組 ID 為：\n{group_id}"} ])
 
                 # 如果使用者輸入 "商品查詢"，回應多頁圖文訊息
-                elif user_message == "商品查詢":
+                elif user_message == "i划算早安":
                     reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "ignored"})  # 其他訊息不處理
