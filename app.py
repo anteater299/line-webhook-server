@@ -83,7 +83,7 @@ def generate_carousel():
                                 {
                                     "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463824_208604_3ACB96ED.jpg",
                                     "title": "紅櫻花媽祖平安御守曲奇餅",
-                                    "text": "$188,
+                                    "text": "$188",
                                     "actions": [
                                         {
                                             "type": "uri",
