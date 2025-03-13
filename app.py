@@ -93,14 +93,14 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/445397_201025_ED5C7F70.jpg",
-                                    "title": "時髦的安吉小姐 可微波陶瓷碗(黃/白) 含蓋",
-                                    "text": "$249",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463825_208605_D1A6C7A9.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-粉",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=634f8d8e1425dc761bb6"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=49e9014248e4e40b882f"
                                         }
                                     ]
                                 },
