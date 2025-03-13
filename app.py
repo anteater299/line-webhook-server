@@ -57,14 +57,14 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/357119_166928_A50A7951.jpg",
-                                    "title": "【韓國innisfree】無油無慮礦物控油蜜粉5g [買1送1]",
-                                    "text": "$458",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463817_208602_7CBCD0A1.jpg",
+                                    "title": "媽祖淨身除穢包10入",
+                                    "text": "$148",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=28fee610fa12a55b9ad6"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=dee137644ca851cba1f1"
                                         }
                                     ]
                                 },
