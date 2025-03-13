@@ -69,14 +69,14 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/447984_202232_0041E1A6.jpg",
-                                    "title": "米樂爆米花- 史努比花季寫生罐爆米花(10入/箱)-焦糖",
-                                    "text": "$1780",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463822_208603_59AD3AB1.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-綠",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=ad5cda379f38a0d8b866"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=da3a44c773e6ad507005"
                                         }
                                     ]
                                 },
