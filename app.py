@@ -105,26 +105,26 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/442601_199996_8D6A0FE6.jpg",
-                                    "title": "寶可夢手提燜燒罐(三色選)",
-                                    "text": "$593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463827_208606_843CF688.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-白",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=85141b1306c58b63288d"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=c742bc19203d445ea2c4"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/432988_195847_9F706643.jpg",
-                                    "title": "【利捷維】有酵超級B群膜衣錠 60錠",
-                                    "text": "$429",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463827_208606_843CF688.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-白",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=aae26f7afe62d7df4719"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=c742bc19203d445ea2c4"
                                         }
                                     ]
                                 },
