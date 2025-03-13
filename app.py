@@ -81,9 +81,9 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/447971_202226_65F95E7C.jpg",
-                                    "title": "【超比食品】燕麥脆片-微甜草莓x6包(100g/包)",
-                                    "text": "$699",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463824_208604_3ACB96ED.jpg",
+                                    "title": "紅櫻花媽祖平安御守曲奇餅",
+                                    "text": "$188",
                                     "actions": [
                                         {
                                             "type": "uri",
