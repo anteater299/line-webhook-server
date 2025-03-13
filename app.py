@@ -130,7 +130,7 @@ def generate_carousel():
                                 },
                                 {
                                     "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/465082_209317_06569B87.jpg",
-                                    "title": "【小米】Xiaomi Pad 7 Pro 灰色 (8GB RAM/256GB ROM)",
+                                    "title": "【小米】Xiaomi Pad 7Pro灰色(8GB RAM/256GB ROM)",
                                     "text": "$13,999",
                                     "actions": [
                                         {
