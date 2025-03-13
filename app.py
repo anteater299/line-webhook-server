@@ -117,50 +117,50 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463980_208630_157E74AA.jpg",
-                                    "title": "洗劑革命 抗菌柔護洗衣膠囊 (雙色)15顆-6包入",
-                                    "text": "$390",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/432988_195847_9F706643.jpg",
+                                    "title": "【利捷維】有酵超級B群膜衣錠 60錠",
+                                    "text": "$429",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=8d5d4bbb759cc04ea47e"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=aae26f7afe62d7df4719"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/465082_209317_06569B87.jpg",
-                                    "title": "【小米】Xiaomi Pad 7 Pro 灰色 (8GB RAM/256GB ROM)",
-                                    "text": "$13,999",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/381549_178160_B8DA26E1.jpg",
+                                    "title": "【羅技 Logitech】Pebble 2 Combo 無線藍芽 鍵盤滑鼠組",
+                                    "text": "$1,790",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=59c43547fadc82fd75f6"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=af996c2aa30334fe9e30"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/466873_210085_0388F8CC.jpg",
-                                    "title": "PS5魔物獵人限定手把(日)+ PS5魔物獵人荒野典藏版+手把包+支架",
-                                    "text": "$7,980",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/453119_204460_51316409.jpg",
+                                    "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
+                                    "text": "$2888",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=574192664060ea6f20e4"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=e88a81727c47914204f9"
                                         }
                                     ]
                                 },                                                           
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/466910_210090_2485645C.jpg",
-                                    "title": "PENHALIGON'S潘海利根 春季明星香氛殿堂禮盒(2mlx8入) 三件組",
-                                    "text": "$2,699",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/424486_193074_8385A54E.jpg",
+                                    "title": "【UCC】 117精緻即溶咖啡-無糖2gx100入/盒",
+                                    "text": "$499",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=6377b69a3d83e411c760"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=3f8f6735bbf59907f59b"
                                         }
                                     ]
                                 }
