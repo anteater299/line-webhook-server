@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
 import requests
-import os
 import json
 
 app = Flask(__name__)
 
 # 讀取環境變數中的 LINE Channel Access Token
-LINE_ACCESS_TOKEN = os.getenv("RZvVC1BJGeTbMX0ontVCsFsnaucBT2TtKo7wt44OWX7wdzGrgXRAuY0x2/djYdS7cdjI/UTHlZp9MskInhaRWTjYyeHYHXq5lEA63TQxHn5jhE8j/Nux+dJdEE47MX9IQkeiAcvvmAS5xbbT1DSs1QdB04t89/1O/w1cDnyilFU=")
+LINE_ACCESS_TOKEN ="RZvVC1BJGeTbMX0ontVCsFsnaucBT2TtKo7wt44OWX7wdzGrgXRAuY0x2/djYdS7cdjI/UTHlZp9MskInhaRWTjYyeHYHXq5lEA63TQxHn5jhE8j/Nux+dJdEE47MX9IQkeiAcvvmAS5xbbT1DSs1QdB04t89/1O/w1cDnyilFU="
 LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply"
 LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
 
@@ -41,50 +40,50 @@ def generate_carousel():
     return [
         {
             "type": "template",
-            "altText": "這是多頁圖文訊息",
+            "altText": "i划算推薦好康報你知",
             "template": {
                 "type": "carousel",
                 "columns": [
                    {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/198284/image/MAI_174423644_X700X700.jpg",
-                                    "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
-                                    "text": "$2888",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/347850_162769_973F20E6.jpg",
+                                    "title": "【箱購】宏瑋80抽濕紙巾太厚駕到(40包入)",
+                                    "text": "$888",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=e88a81727c47914204f9"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=bf36b596d203cbfb99a0"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/166928/image/MAI_154734938_X700X700.jpg",
-                                    "title": "【韓國innisfree】無油無慮礦物控油蜜粉5g [買1送1]",
-                                    "text": "$458",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463817_208602_7CBCD0A1.jpg",
+                                    "title": "媽祖淨身除穢包10入",
+                                    "text": "$148",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=28fee610fa12a55b9ad6"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=dee137644ca851cba1f1"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/202232/image/MAI_192711319_X700X700.jpg",
-                                    "title": "米樂爆米花- 史努比花季寫生罐爆米花(10入/箱)-焦糖",
-                                    "text": "$1780",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463822_208603_59AD3AB1.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-綠",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=ad5cda379f38a0d8b866"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=da3a44c773e6ad507005"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/202226/image/MAI_183454795_X400X400.jpg?uts=175802593",
-                                    "title": "【超比食品】燕麥脆片-微甜草莓x6包(100g/包)",
-                                    "text": "$699",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463824_208604_3ACB96ED.jpg",
+                                    "title": "紅櫻花媽祖平安御守曲奇餅",
+                                    "text": "$188",
                                     "actions": [
                                         {
                                             "type": "uri",
@@ -94,74 +93,74 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/201025/image/MAI_111508012_X400X400.jpg?uts=175802593",
-                                    "title": "時髦的安吉小姐 可微波陶瓷碗(黃/白) 含蓋",
-                                    "text": "$249",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463825_208605_D1A6C7A9.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-粉",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=634f8d8e1425dc761bb6"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=49e9014248e4e40b882f"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/199996/image/MAI_152944914_X400X400.jpg?uts=175802593",
-                                    "title": "寶可夢手提燜燒罐(三色選)",
-                                    "text": "$593",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463827_208606_843CF688.jpg",
+                                    "title": "Kinyo復刻3用輕巧掛脖扇-白",
+                                    "text": "$379",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=85141b1306c58b63288d"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=c742bc19203d445ea2c4"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/195847/image/MAI_153641158_X400X400.jpg?uts=175802593",
-                                    "title": "【利捷維】有酵超級B群膜衣錠 60錠",
-                                    "text": "$429",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463980_208630_157E74AA.jpg",
+                                    "title": "洗劑革命 抗菌柔護洗衣膠囊 (雙色)15顆-6包入",
+                                    "text": "$390",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=aae26f7afe62d7df4719"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=8d5d4bbb759cc04ea47e"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/178160/image/MAI_171909057_X400X400.png?uts=175802593",
-                                    "title": "【羅技 Logitech】Pebble 2 Combo 無線藍芽 鍵盤滑鼠組",
-                                    "text": "$1,790",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/465082_209317_06569B87.jpg",
+                                    "title": "【小米】Xiaomi Pad 7 Pro 灰色 (8GB RAM/256GB ROM)",
+                                    "text": "$13,999",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=af996c2aa30334fe9e30"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=59c43547fadc82fd75f6"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/198284/image/MAI_174423644_X700X700.jpg",
-                                    "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
-                                    "text": "$2888",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/466873_210085_0388F8CC.jpg",
+                                    "title": "PS5魔物獵人限定手把(日)+ PS5魔物獵人荒野典藏版+手把包+支架",
+                                    "text": "$7,980",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=e88a81727c47914204f9"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=574192664060ea6f20e4"
                                         }
                                     ]
                                 },                                                           
                                 {
-                                    "thumbnailImageUrl": "https://711go.7-11.com.tw/Files/market/193074/image/MAI_134443667_X700X700.jpg",
-                                    "title": "【UCC】 117精緻即溶咖啡-無糖2gx100入/盒",
-                                    "text": "$499",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/466910_210090_2485645C.jpg",
+                                    "title": "PENHALIGON'S潘海利根 春季明星香氛殿堂禮盒(2mlx8入) 三件組",
+                                    "text": "$2,699",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=3f8f6735bbf59907f59b"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=6377b69a3d83e411c760"
                                         }
                                     ]
                                 }
