@@ -13,18 +13,14 @@ LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
 GOOGLE_SHEET_ID = "1YWkpL5XubmUliraB2W0VcnoqaD8IaeMs6pzlhrxwrws" # 你的 Google Sheets ID
 GOOGLE_API_KEY = "AIzaSyCCuxbwvxT_FGJ1zq3R4_jtMtcVgtI_sjg" # 你的 Google API Key
 
+# 回應 LINE Bot 訊息
 def reply_message(reply_token, messages):
-    """使用 Reply API 回應多頁圖文訊息"""
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
     }
-    data = {
-        "replyToken": reply_token,
-        "messages": messages
-    }
-    response = requests.post(LINE_REPLY_URL, headers=headers, json=data)
-    return response.json()
+    data = {"replyToken": reply_token, "messages": messages}
+    return requests.post(LINE_REPLY_URL, headers=headers, json=data).json()
 
 def push_message(to, messages):
     """使用 Push API 主動推送多頁圖文訊息"""
