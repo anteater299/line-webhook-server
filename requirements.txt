@@ -1,3 +1,5 @@
 flask
 requests
 jsonify
+gspread
+oauth2client
