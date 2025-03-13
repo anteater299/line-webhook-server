@@ -45,14 +45,14 @@ def generate_carousel():
                 "type": "carousel",
                 "columns": [
                    {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/453119_204460_51316409.jpg",
-                                    "title": "(水果)日本青森葉乃果蘋果中果32規300g*6粒禮盒*2盒",
-                                    "text": "$2888",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/347850_162769_973F20E6.jpg",
+                                    "title": "【箱購】宏瑋80抽濕紙巾太厚駕到(40包入)",
+                                    "text": "$888",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=e88a81727c47914204f9"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=bf36b596d203cbfb99a0"
                                         }
                                     ]
                                 },
