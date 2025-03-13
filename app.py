@@ -117,26 +117,26 @@ def generate_carousel():
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/432988_195847_9F706643.jpg",
-                                    "title": "【利捷維】有酵超級B群膜衣錠 60錠",
-                                    "text": "$429",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/463980_208630_157E74AA.jpg",
+                                    "title": "洗劑革命 抗菌柔護洗衣膠囊 (雙色)15顆-6包入",
+                                    "text": "$390",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=aae26f7afe62d7df4719"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=8d5d4bbb759cc04ea47e"
                                         }
                                     ]
                                 },
                                 {
-                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/381549_178160_B8DA26E1.jpg",
-                                    "title": "【羅技 Logitech】Pebble 2 Combo 無線藍芽 鍵盤滑鼠組",
-                                    "text": "$1,790",
+                                    "thumbnailImageUrl": "https://openlife.7-11.com.tw/comm/ols/set/7ego2/item/465082_209317_06569B87.jpg",
+                                    "title": "【小米】Xiaomi Pad 7 Pro 灰色 (8GB RAM/256GB ROM)",
+                                    "text": "$13,999",
                                     "actions": [
                                         {
                                             "type": "uri",
                                             "label": "查看商品",
-                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=af996c2aa30334fe9e30"
+                                            "uri": "https://openlife.7-11.com.tw/comm/share/share.html?v=59c43547fadc82fd75f6"
                                         }
                                     ]
                                 },
