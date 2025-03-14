@@ -2,37 +2,53 @@ from flask import Flask, request, jsonify
 import requests
 import gspread
 import os
+import json
 from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
 
-# 設定環境變數
-LINE_ACCESS_TOKEN = "RZvVC1BJGeTbMX0ontVCsFsnaucBT2TtKo7wt44OWX7wdzGrgXRAuY0x2/djYdS7cdjI/UTHlZp9MskInhaRWTjYyeHYHXq5lEA63TQxHn5jhE8j/Nux+dJdEE47MX9IQkeiAcvvmAS5xbbT1DSs1QdB04t89/1O/w1cDnyilFU="
+# 讀取環境變數
+LINE_ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
 LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply"
-GOOGLE_SHEET_ID = "1YWkpL5XubmUliraB2W0VcnoqaD8IaeMs6pzlhrxwrws" # 你的 Google Sheets ID
-GOOGLE_API_KEY = os.getenv("AIzaSyCCuxbwvxT_FGJ1zq3R4_jtMtcVgtI_sjg") # 你的 Google API Key
+GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 
 # 連接 Google Sheets
 def get_google_sheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
+
+    credentials_json = os.getenv("GOOGLE_CREDENTIALS")
+    if not credentials_json:
+        raise ValueError("找不到 GOOGLE_CREDENTIALS 環境變數")
+
+    credentials_info = json.loads(credentials_json)
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials_info, scope)
     
-    creds = ServiceAccountCredentials.from_json_keyfile_name("google_credentials.json", scope)
     client = gspread.authorize(creds)
     return client.open_by_key(GOOGLE_SHEET_ID).sheet1
 
 # 產生 Carousel Template
 def generate_carousel():
     sheet = get_google_sheet()
-    data = sheet.get_all_records()  # 取得所有資料
-    columns = [{
-        "thumbnailImageUrl": row["image_url"],
-        "title": row["title"],
-        "text": row["price"],
-        "actions": [{"type": "uri", "label": "查看商品", "uri": row["product_url"]}]
-    } for row in data]
+    data = sheet.get_all_records()[:10]  # 限制最多 10 筆資料
+    columns = []
+    
+    for row in data:
+        column = {
+            "thumbnailImageUrl": row.get("image_url", ""),
+            "title": row.get("title", "無標題"),
+            "text": row.get("price", "價格不詳"),
+            "actions": [
+                {"type": "uri", "label": "查看商品", "uri": row.get("product_url", "#")}
+            ]
+        }
+        columns.append(column)
 
-    return [{"type": "template", "altText": "最新商品推薦", "template": {"type": "carousel", "columns": columns}}]
+    return [{
+        "type": "template",
+        "altText": "最新商品推薦",
+        "template": {"type": "carousel", "columns": columns}
+    }]
 
 # 回應 LINE Bot 訊息
 def reply_message(reply_token, messages):
