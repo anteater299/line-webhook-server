@@ -74,11 +74,17 @@ def webhook():
             user_message = event["message"]["text"]
             reply_token = event["replyToken"]
 
-            if user_message == "取得群組ID":
-                reply_message(reply_token, [ {"type": "text", "text": f"本群組 ID 為：\n{group_id}"} ])
+            # 檢查是否來自群組
+            if "source" in event and event["source"].get("type") == "group":
+                group_id = event["source"]["groupId"]
 
-            if user_message == "i划算早安":
-                reply_message(reply_token, generate_carousel())
+                # 如果使用者輸入 "取得群組ID"，回應群組 ID
+                if user_message == "取得群組ID":
+                    reply_message(reply_token, [ {"type": "text", "text": f"本群組 ID 為：\n{group_id}"} ])
+
+                # 如果使用者輸入 "商品查詢"，回應多頁圖文訊息
+                elif user_message == "i划算早安":
+                    reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "success"})
 
