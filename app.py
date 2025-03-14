@@ -107,17 +107,20 @@ def webhook():
 
 @app.route("/push", methods=["POST"])
 def send_push_message():
-    """透過 Push API 推送多頁圖文訊息"""
+    """透過 Push API 推送多頁圖文訊息給多個群組"""
     data = request.get_json()
-    group_id = data.get("group_id")  # 群組 ID
-    if not group_id:
-        return jsonify({"error": "缺少 group_id"}), 400
+    group_ids = data.get("group_ids")  # 接收群組 ID 陣列
 
-    # 對每個群組 ID 發送訊息
-    result = []
+    if not group_ids or not isinstance(group_ids, list):
+        return jsonify({"error": "缺少 group_ids 或格式錯誤"}), 400
+
+    # 依序對每個群組發送推播訊息
+    results = []
     for group_id in group_ids:
         push_result = push_message(group_id, generate_carousel())
-        result.append(push_result)
+        results.append({"group_id": group_id, "result": push_result})
+
+    return jsonify(results)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
