@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import requests
 import gspread
+import os
 from oauth2client.service_account import ServiceAccountCredentials
 
 app = Flask(__name__)
