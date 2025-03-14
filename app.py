@@ -28,6 +28,20 @@ def get_google_sheet():
     client = gspread.authorize(creds)
     return client.open_by_key(GOOGLE_SHEET_ID).sheet1
 
+def push_message(to, messages):
+    """使用 Push API 主動推送多頁圖文訊息"""
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
+    }
+    data = {
+        "to": to,
+        "messages": messages
+    }
+    response = requests.post(LINE_PUSH_URL, headers=headers, json=data)
+    return response.json()
+
+
 # 產生 Carousel Template
 def generate_carousel():
     sheet = get_google_sheet()
