@@ -73,7 +73,7 @@ def reply_message(reply_token, messages):
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
     }
     data = {"replyToken": reply_token, "messages": messages}
-    # print("Sending data to LINE API:", data)  # 檢查發送的資料
+    print("Sending data to LINE API:", data)  # 檢查發送的資料
     return requests.post(LINE_REPLY_URL, headers=headers, json=data).json()
 
 @app.route("/", methods=["GET"])
