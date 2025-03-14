@@ -10,6 +10,7 @@ app = Flask(__name__)
 # 讀取環境變數
 LINE_ACCESS_TOKEN = os.getenv("LINE_ACCESS_TOKEN")
 LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply"
+LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 
 # 連接 Google Sheets
@@ -73,10 +74,25 @@ def webhook():
             user_message = event["message"]["text"]
             reply_token = event["replyToken"]
 
+            if user_message == "取得群組ID":
+                reply_message(reply_token, [ {"type": "text", "text": f"本群組 ID 為：\n{group_id}"} ])
+
             if user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "success"})
+
+@app.route("/push", methods=["POST"])
+def send_push_message():
+    """透過 Push API 推送多頁圖文訊息"""
+    data = request.get_json()
+    group_id = data.get("group_id")  # 群組 ID
+    if not group_id:
+        return jsonify({"error": "缺少 group_id"}), 400
+
+    result = push_message(group_id, generate_carousel())
+    return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
