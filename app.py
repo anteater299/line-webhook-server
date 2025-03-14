@@ -31,6 +31,7 @@ def get_google_sheet():
 def generate_carousel():
     sheet = get_google_sheet()
     data = sheet.get_all_records()[:10]  # 限制最多 10 筆資料
+    print("Data from Google Sheets:", data)  # 檢查取得的資料
     columns = []
     
     for row in data:
