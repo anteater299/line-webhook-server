@@ -58,6 +58,7 @@ def reply_message(reply_token, messages):
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
     }
     data = {"replyToken": reply_token, "messages": messages}
+    print("Sending data to LINE API:", data)  # 檢查發送的資料
     return requests.post(LINE_REPLY_URL, headers=headers, json=data).json()
 
 @app.route("/", methods=["GET"])
@@ -67,6 +68,7 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
+    print("Received webhook data:", data)  # 檢查 webhook 接收到的資料
     events = data.get("events", [])
     for event in events:
         if event.get("type") == "message" and event["message"].get("type") == "text":
