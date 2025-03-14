@@ -9,6 +9,7 @@ app = Flask(__name__)
 # 讀取環境變數中的 LINE Channel Access Token
 LINE_ACCESS_TOKEN = "RZvVC1BJGeTbMX0ontVCsFsnaucBT2TtKo7wt44OWX7wdzGrgXRAuY0x2/djYdS7cdjI/UTHlZp9MskInhaRWTjYyeHYHXq5lEA63TQxHn5jhE8j/Nux+dJdEE47MX9IQkeiAcvvmAS5xbbT1DSs1QdB04t89/1O/w1cDnyilFU="
 LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply"
+LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
 GOOGLE_SHEET_ID = "1YWkpL5XubmUliraB2W0VcnoqaD8IaeMs6pzlhrxwrws" # 你的 Google Sheets ID
 GOOGLE_API_KEY = "AIzaSyCCuxbwvxT_FGJ1zq3R4_jtMtcVgtI_sjg" # 你的 Google API Key
 
