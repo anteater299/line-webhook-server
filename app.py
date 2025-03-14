@@ -46,6 +46,7 @@ def push_message(to, messages):
 def generate_carousel():
     sheet = get_google_sheet()
     data = sheet.get_all_records()[:10]  # 限制最多 10 筆資料
+    print("Data from Google Sheets:", data)  # 檢查取得的資料
     columns = []
     
     for row in data:
@@ -72,6 +73,7 @@ def reply_message(reply_token, messages):
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
     }
     data = {"replyToken": reply_token, "messages": messages}
+    print("Sending data to LINE API:", data)  # 檢查發送的資料
     return requests.post(LINE_REPLY_URL, headers=headers, json=data).json()
 
 @app.route("/", methods=["GET"])
@@ -98,6 +100,7 @@ def webhook():
 
                 # 如果使用者輸入 "商品查詢"，回應多頁圖文訊息
                 elif user_message == "i划算早安":
+                    print("Replying with carousel")  # 確認是否進入回應階段
                     reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "success"})
