@@ -28,7 +28,7 @@ def get_google_sheet():
     client = gspread.authorize(creds)
     return client.open_by_key(GOOGLE_SHEET_ID).sheet1
 
-# 發送 Push 訊息
+# 推送訊息 (Push API)
 def push_message(to, messages):
     headers = {
         "Content-Type": "application/json",
@@ -39,11 +39,13 @@ def push_message(to, messages):
         "messages": messages
     }
     response = requests.post(LINE_PUSH_URL, headers=headers, json=data)
-    
+
     if response.status_code != 200:
-        print(f"Push message failed: {response.text}")  # 記錄錯誤
+        print(f"❌ Push message failed: {response.text}")
         return {"error": response.text}
-    
+
+    message_count = len(messages)
+    print(f"✅ Push message success: 發送 {message_count} 則訊息 | 回應: {response.json()}")
     return response.json()
 
 # 產生 Carousel Template
@@ -69,20 +71,21 @@ def generate_carousel():
         "template": {"type": "carousel", "columns": columns}
     }]
 
-# 回應 LINE Bot 訊息
+# 回應 LINE 訊息 (Reply API)
 def reply_message(reply_token, messages):
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
     }
     data = {"replyToken": reply_token, "messages": messages}
-    
     response = requests.post(LINE_REPLY_URL, headers=headers, json=data)
-    
+
     if response.status_code != 200:
-        print(f"Reply message failed: {response.text}")  # 記錄錯誤
+        print(f"❌ Reply message failed: {response.text}")
         return {"error": response.text}
-    
+
+    message_count = len(messages)
+    print(f"✅ Reply message success: 發送 {message_count} 則訊息 | 回應: {response.json()}")
     return response.json()
 
 @app.route("/", methods=["GET"])
@@ -92,10 +95,10 @@ def home():
 @app.route("/webhook", methods=["POST"])
 def webhook():
     data = request.get_json()
-    print("Received webhook data:", data)  # 檢查 webhook 接收到的資料
+    print("📩 Received webhook data:", data)
     events = data.get("events", [])
 
-    for event in events:  # ✅ 修正縮排
+    for event in events:
         if event.get("type") == "message" and event["message"].get("type") == "text":
             user_message = event["message"]["text"]
             reply_token = event["replyToken"]
@@ -105,15 +108,16 @@ def webhook():
                 reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
             
             elif user_message == "i划算早安":
-                print("Replying with carousel")
+                print("📢 Replying with carousel...")
                 reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "success"})
 
 @app.route("/push", methods=["POST"])
 def send_push_message():
+    """透過 Push API 推送多頁圖文訊息給多個群組"""
     data = request.get_json()
-    group_ids = data.get("group_ids")
+    group_ids = data.get("group_ids")  # 接收群組 ID 陣列
 
     if not group_ids or not isinstance(group_ids, list):
         return jsonify({"error": "缺少 group_ids 或格式錯誤"}), 400
