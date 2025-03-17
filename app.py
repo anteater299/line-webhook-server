@@ -121,6 +121,9 @@ def webhook():
 
             if user_message == "你好":
                 reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
+            elif user_message == "取得群組ID":
+                group_id = event["source"].get("groupId", "無法取得群組 ID")
+                reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
             elif validate_input(user_message):
