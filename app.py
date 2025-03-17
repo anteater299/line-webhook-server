@@ -62,7 +62,7 @@ def push_message(to, messages):
     if response.status_code == 200:
         status = "成功"
         success_count = len(messages)
-    status = "失敗"
+    else status = "失敗"
     log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息", group_member_count)
     
     return response.json()
