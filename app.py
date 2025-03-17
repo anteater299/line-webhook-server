@@ -53,7 +53,7 @@ def generate_carousel():
         column = {
             "thumbnailImageUrl": row.get("image_url", ""),
             "title": row.get("title", "無標題"),
-            "text": row.get("price", "價格不詳"),
+            "text": str(row.get("price", "價格不詳")),
             "actions": [
                 {"type": "uri", "label": "查看商品", "uri": row.get("product_url", "#")}
             ]
@@ -85,19 +85,18 @@ def webhook():
     data = request.get_json()
     print("Received webhook data:", data)  # 檢查 webhook 接收到的資料
     events = data.get("events", [])
-    for event in events:
-        if event.get("type") == "message" and event["message"].get("type") == "text":
-            user_message = event["message"]["text"]
-            reply_token = event["replyToken"]
+for event in events:
+    if event.get("type") == "message" and event["message"].get("type") == "text":
+        user_message = event["message"]["text"]
+        reply_token = event["replyToken"]
 
-                # 如果使用者輸入 "取得群組ID"，回應群組 ID
-                if user_message == "取得群組ID":
-                    reply_message(reply_token, [ {"type": "text", "text": f"本群組 ID 為：\n{group_id}"} ])
-
-                # 如果使用者輸入 "商品查詢"，回應多頁圖文訊息
-                elif user_message == "i划算早安":
-                    print("Replying with carousel")  # 確認是否進入回應階段
-                    reply_message(reply_token, generate_carousel())
+        if user_message == "取得群組ID":
+            group_id = event["source"].get("groupId", "無法取得群組 ID")
+            reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
+        
+        elif user_message == "i划算早安":
+            print("Replying with carousel")  # 確認是否進入回應階段
+            reply_message(reply_token, generate_carousel())
 
     return jsonify({"status": "success"})
 
