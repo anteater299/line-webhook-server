@@ -44,47 +44,34 @@ def push_message(to, messages):
         "messages": messages
     }
     response = requests.post(LINE_PUSH_URL, headers=headers, json=data)
-
+    
     status = "成功" if response.status_code == 200 else "失敗"
     log_message("Push_Log", "PUSH", to, status, response.text)
     
     return response.json()
 
-@app.route("/", methods=["GET"])
-def home():
-    return "Flask LINE Bot 使用 Google Sheets 運行中"
+# 產生 Carousel Template
+def generate_carousel():
+    sheet = get_google_sheet("Product_Data")
+    data = sheet.get_all_records()[:10]  # 限制最多 10 筆資料
+    columns = []
+    
+    for row in data:
+        column = {
+            "thumbnailImageUrl": row.get("image_url", ""),
+            "title": row.get("title", "無標題"),
+            "text": row.get("price", "價格不詳"),
+            "actions": [
+                {"type": "uri", "label": "查看商品", "uri": row.get("product_url", "#")}
+            ]
+        }
+        columns.append(column)
 
-@app.route("/webhook", methods=["POST"])
-def webhook():
-    data = request.get_json()
-    print("📩 Received webhook data:", data)
-    events = data.get("events", [])
-
-    sheet = get_google_sheet("User_Input_Data")
-
-    for event in events:
-        if event.get("type") == "message" and event["message"].get("type") == "text":
-            user_message = event["message"]["text"]
-            reply_token = event["replyToken"]
-            user_id = event["source"].get("userId", "未知")
-
-            if user_message == "你好":
-                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
-            elif validate_input(user_message):
-                date, number = user_message.split(" ")
-                sheet.append_row([user_id, date, number])
-                reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
-            else:
-                reply_message(reply_token, [{"type": "text", "text": "格式錯誤！請輸入 'YYYY-MM-DD 數字'"}])
-
-    return jsonify({"status": "success"})
-
-def validate_input(text):
-    parts = text.split(" ")
-    if len(parts) == 2:
-        date, number = parts
-        return date.count("-") == 2 and number.isdigit()
-    return False
+    return [{
+        "type": "template",
+        "altText": "最新商品推薦",
+        "template": {"type": "carousel", "columns": columns}
+    }]
 
 # 回應 LINE 訊息 (Reply API)
 def reply_message(reply_token, messages):
@@ -99,6 +86,43 @@ def reply_message(reply_token, messages):
     log_message("Reply_Log", "REPLY", reply_token, status, response.text)
     
     return response.json()
+
+@app.route("/", methods=["GET"])
+def home():
+    return "Flask LINE Bot 使用 Google Sheets 運行中"
+
+@app.route("/webhook", methods=["POST"])
+def webhook():
+    data = request.get_json()
+    print("Received webhook data:", data)  # 檢查 webhook 接收到的資料
+    events = data.get("events", [])
+    sheet = get_google_sheet("User_Input_Data")
+
+    for event in events:
+        if event.get("type") == "message" and event["message"].get("type") == "text":
+            user_message = event["message"]["text"]
+            reply_token = event["replyToken"]
+            user_id = event["source"].get("userId", "未知")
+
+            if user_message == "你好":
+                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
+            elif user_message == "i划算早安":
+                reply_message(reply_token, generate_carousel())
+            elif validate_input(user_message):
+                date, number = user_message.split(" ")
+                sheet.append_row([user_id, date, number])
+                reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
+            else:
+                reply_message(reply_token, [{"type": "text", "text": "格式錯誤！請輸入 'YYYY-MM-DD 數字'"}])
+    
+    return jsonify({"status": "success"})
+
+def validate_input(text):
+    parts = text.split(" ")
+    if len(parts) == 2:
+        date, number = parts
+        return date.count("-") == 2 and number.isdigit()
+    return False
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
