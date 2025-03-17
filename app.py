@@ -59,8 +59,8 @@ def generate_carousel():
     for row in data:
         column = {
             "thumbnailImageUrl": row.get("image_url", ""),
-            "title": row.get("title", "無標題"),
-            "text": row.get("price", "價格不詳"),
+            "title": str(row.get("title", "無標題"))[:40],  # 限制 40 字
+            "text": str(row.get("price", "價格不詳"))[:60],  # 限制 60 字
             "actions": [
                 {"type": "uri", "label": "查看商品", "uri": row.get("product_url", "#")}
             ]
@@ -113,7 +113,7 @@ def webhook():
                 sheet.append_row([user_id, date, number])
                 reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
             else:
-                reply_message(reply_token, [{"type": "text", "text": "格式錯誤！請輸入 'YYYY-MM-DD 數字'"}])
+                reply_message(reply_token, [{"type": "text", "text": "格式錯誤！請輸入 'YYYY-MM-DD 數字'，ex. 2024-01-01 100"}])
     
     return jsonify({"status": "success"})
 
