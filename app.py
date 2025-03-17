@@ -41,7 +41,7 @@ def get_google_sheet(sheet_name):
 def log_message(sheet_name, message_type, recipient, status, response_text, group_member_count):
     sheet = get_google_sheet(sheet_name)
     import pytz
-timestamp = datetime.now(pytz.timezone('Asia/Taipei')).strftime("%Y-%m-%d %H:%M:%S")
+    timestamp = datetime.now(pytz.timezone('Asia/Taipei')).strftime("%Y-%m-%d %H:%M:%S")
     sheet.append_row([timestamp, message_type, recipient, status, response_text, group_member_count])
 
 # 推送訊息 (Push API)
