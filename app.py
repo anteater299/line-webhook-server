@@ -4,6 +4,7 @@ import gspread
 import os
 import json
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 app = Flask(__name__)
 
@@ -13,7 +14,7 @@ LINE_REPLY_URL = "https://api.line.me/v2/bot/message/reply"
 LINE_PUSH_URL = "https://api.line.me/v2/bot/message/push"
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID")
 
-# 連接 Google Sheets
+# 連接 Google Sheets，若不存在則建立
 def get_google_sheet(sheet_name):
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/spreadsheets",
              "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
@@ -26,12 +27,21 @@ def get_google_sheet(sheet_name):
     creds = ServiceAccountCredentials.from_json_keyfile_dict(credentials_info, scope)
     
     client = gspread.authorize(creds)
-    return client.open_by_key(GOOGLE_SHEET_ID).worksheet(sheet_name)
+    spreadsheet = client.open_by_key(GOOGLE_SHEET_ID)
+
+    try:
+        return spreadsheet.worksheet(sheet_name)
+    except gspread.exceptions.WorksheetNotFound:
+        # 如果工作表不存在，則自動建立
+        print(f"⚠️ 工作表 '{sheet_name}' 不存在，正在建立...")
+        spreadsheet.add_worksheet(title=sheet_name, rows="1000", cols="10")
+        return spreadsheet.worksheet(sheet_name)
 
 # 記錄訊息發送結果
 def log_message(sheet_name, message_type, recipient, status, response_text):
     sheet = get_google_sheet(sheet_name)
-    sheet.append_row([message_type, recipient, status, response_text])
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    sheet.append_row([timestamp, message_type, recipient, status, response_text])
 
 # 推送訊息 (Push API)
 def push_message(to, messages):
@@ -119,10 +129,19 @@ def webhook():
 
 def validate_input(text):
     parts = text.split(" ")
-    if len(parts) == 2:
-        date, number = parts
-        return date.count("-") == 2 and number.isdigit()
-    return False
+    if len(parts) != 2:
+        return False
+
+    date, number = parts
+    if not number.isdigit():
+        return False
+
+    try:
+        datetime.strptime(date, "%Y-%m-%d")
+    except ValueError:
+        return False
+
+    return True
 
 @app.route("/push", methods=["POST"])
 def send_push_message():
@@ -133,7 +152,6 @@ def send_push_message():
     if not group_ids or not isinstance(group_ids, list):
         return jsonify({"error": "缺少 group_ids 或格式錯誤"}), 400
 
-    # 依序對每個群組發送推播訊息
     results = []
     for group_id in group_ids:
         push_result = push_message(group_id, generate_carousel())
