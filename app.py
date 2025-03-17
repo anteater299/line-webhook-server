@@ -175,9 +175,11 @@ def get_group_member_count(group_id):
     url = f"https://api.line.me/v2/bot/group/{group_id}/members/count"
     headers = {"Authorization": f"Bearer {LINE_ACCESS_TOKEN}"}
     response = requests.get(url, headers=headers)
+    print(f"群組 ID: {group_id}, API 回應: {response.text}")  # 新增除錯資訊
     if response.status_code == 200:
         return response.json().get("count", "未知")
     return "未知"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
