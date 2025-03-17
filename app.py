@@ -114,8 +114,8 @@ def webhook():
             reply_token = event["replyToken"]
             user_id = event["source"].get("userId", "未知")
 
-            if user_message == "你好":
-                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
+            if user_message == "記錄":
+                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔，ex. 2024-01-01 100""}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
             elif validate_input(user_message):
@@ -123,7 +123,7 @@ def webhook():
                 sheet.append_row([user_id, date, number])
                 reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
             else:
-                reply_message(reply_token, [{"type": "text", "text": "格式錯誤！請輸入 'YYYY-MM-DD 數字'，ex. 2024-01-01 100"}])
+
     
     return jsonify({"status": "success"})
 
