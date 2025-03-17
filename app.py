@@ -100,7 +100,7 @@ def reply_message(reply_token, messages):
     response = requests.post(LINE_REPLY_URL, headers=headers, json=data)
     
     status = "成功" if response.status_code == 200 else "失敗"
-    log_message("Reply_Log", "REPLY", reply_token, status, response.text)
+    log_message("Reply_Log", "REPLY", reply_token, status, response.text, "N/A")
     
     return response.json()
 
