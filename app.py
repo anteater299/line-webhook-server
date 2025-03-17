@@ -47,8 +47,8 @@ def log_message(sheet_name, message_type, recipient, status, response_text, grou
 # 推送訊息 (Push API)
 def push_message(to, messages):
     success_count = 0
-    group_member_count = get_group_member_count(to)
-    success_count = 0
+    group_member_count = get_group_member_count(to)  # 取得群組人數
+    
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
@@ -62,7 +62,10 @@ def push_message(to, messages):
     if response.status_code == 200:
         status = "成功"
         success_count = len(messages)
-    else status = "失敗"
+    else:
+        status = "失敗"
+
+    # 記錄 PUSH 訊息結果到 Google Sheets
     log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息", group_member_count)
     
     return response.json()
@@ -100,7 +103,7 @@ def reply_message(reply_token, messages):
     response = requests.post(LINE_REPLY_URL, headers=headers, json=data)
     
     status = "成功" if response.status_code == 200 else "失敗"
-    log_message("Reply_Log", "REPLY", reply_token, status, response.text, "N/A")
+    log_message("Reply_Log", "REPLY", reply_token, status, response.text, group_member_count)
     
     return response.json()
 
