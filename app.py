@@ -38,11 +38,11 @@ def get_google_sheet(sheet_name):
         return spreadsheet.worksheet(sheet_name)
 
 # 記錄訊息發送結果
-def log_message(sheet_name, message_type, recipient, status, response_text):
+def log_message(sheet_name, message_type, recipient, status, response_text, group_member_count):
     sheet = get_google_sheet(sheet_name)
     import pytz
 timestamp = datetime.now(pytz.timezone('Asia/Taipei')).strftime("%Y-%m-%d %H:%M:%S")
-    sheet.append_row([timestamp, message_type, recipient, status, response_text])
+    sheet.append_row([timestamp, message_type, recipient, status, response_text, group_member_count])
 
 # 推送訊息 (Push API)
 def push_message(to, messages):
@@ -64,7 +64,7 @@ def push_message(to, messages):
         success_count = len(messages)
     else:
         status = "失敗"
-    log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息 | 群組人數: {group_member_count}")
+    log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息", group_member_count)
     
     return response.json()
 
@@ -124,6 +124,9 @@ def webhook():
 
             if user_message == "你好":
                 reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
+            elif user_message == "取得群組ID":
+                group_id = event["source"].get("groupId", "無法取得群組 ID")
+                reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
             elif validate_input(user_message):
