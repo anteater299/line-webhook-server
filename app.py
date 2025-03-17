@@ -45,6 +45,7 @@ def log_message(sheet_name, message_type, recipient, status, response_text):
 
 # 推送訊息 (Push API)
 def push_message(to, messages):
+    success_count = 0
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
@@ -55,8 +56,12 @@ def push_message(to, messages):
     }
     response = requests.post(LINE_PUSH_URL, headers=headers, json=data)
     
-    status = "成功" if response.status_code == 200 else "失敗"
-    log_message("Push_Log", "PUSH", to, status, response.text)
+    if response.status_code == 200:
+        status = "成功"
+        success_count = len(messages)
+    else:
+        status = "失敗"
+    log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息")
     
     return response.json()
 
@@ -114,8 +119,8 @@ def webhook():
             reply_token = event["replyToken"]
             user_id = event["source"].get("userId", "未知")
 
-            if user_message == "記錄":
-                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔，ex. 2024-01-01 100"}])
+            if user_message == "你好":
+                reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
             elif validate_input(user_message):
@@ -123,7 +128,7 @@ def webhook():
                 sheet.append_row([user_id, date, number])
                 reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
             else:
-
+                
     
     return jsonify({"status": "success"})
 
