@@ -130,7 +130,8 @@ def webhook():
                 sheet.append_row([user_id, date, number])
                 reply_message(reply_token, [{"type": "text", "text": f"已記錄: {date}, {number}"}])
             else:
-                passreturn jsonify({"status": "success"})
+                pass
+    return jsonify({"status": "success"})
 
 def validate_input(text):
     parts = text.split(" ")
