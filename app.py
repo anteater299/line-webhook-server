@@ -125,6 +125,9 @@ def webhook():
                 reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
+            elif user_message == "取得群組ID":
+                group_id = event["source"].get("groupId", "無法取得群組 ID")
+                reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
             elif validate_input(user_message):
                 date, number = user_message.split(" ")
                 sheet.append_row([user_id, date, number])
@@ -134,19 +137,22 @@ def webhook():
     return jsonify({"status": "success"})
 
 def validate_input(text):
-    # 只分成兩部分，避免文字內含空格被拆分
-    parts = text.split(" ", 1)
+    parts = text.split(" ")
     if len(parts) != 2:
         return False
 
-    date, text_content = parts
+    date_str, number_str = parts
+
+    # 驗證日期格式
     try:
-        datetime.strptime(date, "%Y-%m-%d")
+        datetime.strptime(date_str, "%Y-%m-%d")
     except ValueError:
         return False
 
-    # 可額外檢查文字內容是否為空
-    if not text_content.strip():
+    # 驗證數字格式，允許負數
+    try:
+        int(number_str)
+    except ValueError:
         return False
 
     return True
