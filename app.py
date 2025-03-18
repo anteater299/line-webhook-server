@@ -134,17 +134,19 @@ def webhook():
     return jsonify({"status": "success"})
 
 def validate_input(text):
-    parts = text.split(" ")
+    # 只分成兩部分，避免文字內含空格被拆分
+    parts = text.split(" ", 1)
     if len(parts) != 2:
         return False
 
-    date, number = parts
-    if not number.isdigit():
-        return False
-
+    date, text_content = parts
     try:
         datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
+        return False
+
+    # 可額外檢查文字內容是否為空
+    if not text_content.strip():
         return False
 
     return True
