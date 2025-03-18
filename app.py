@@ -141,17 +141,17 @@ def validate_input(text):
     if len(parts) != 2:
         return False
 
-    date_str, number_str = parts
+    date, number = parts
 
     # 驗證日期格式
     try:
-        datetime.strptime(date_str, "%Y-%m-%d")
+        datetime.strptime(date, "%Y-%m-%d")
     except ValueError:
         return False
 
     # 驗證數字格式，允許負數
     try:
-        int(number_str)
+        int(number)
     except ValueError:
         return False
 
