@@ -42,13 +42,14 @@ def log_message(sheet_name, message_type, recipient, status, response_text, grou
     sheet = get_google_sheet(sheet_name)
     import pytz
     timestamp = datetime.now(pytz.timezone('Asia/Taipei')).strftime("%Y-%m-%d %H:%M:%S")
-    sheet.append_row([timestamp, message_type, recipient, status, response_text, "N/A"])
+    sheet.append_row([timestamp, message_type, recipient, status, response_text, group_member_count])
 
 # 推送訊息 (Push API)
 def push_message(to, messages):
     success_count = 0
+    group_member_count = get_group_member_count(to)
+    success_count = 0
     group_member_count = get_group_member_count(to)  # 取得群組人數
-    
     headers = {
         "Content-Type": "application/json",
         "Authorization": f"Bearer {LINE_ACCESS_TOKEN}"
@@ -62,10 +63,8 @@ def push_message(to, messages):
     if response.status_code == 200:
         status = "成功"
         success_count = len(messages)
-    else:
+        else:
         status = "失敗"
-
-    # 記錄 PUSH 訊息結果到 Google Sheets
     log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息", group_member_count)
     
     return response.json()
@@ -126,9 +125,6 @@ def webhook():
 
             if user_message == "你好":
                 reply_message(reply_token, [{"type": "text", "text": "請輸入日期(YYYY-MM-DD)和數字，以空格分隔"}])
-            elif user_message == "取得群組ID":
-                group_id = event["source"].get("groupId", "無法取得群組 ID")
-                reply_message(reply_token, [{"type": "text", "text": f"本群組 ID 為：\n{group_id}"}])
             elif user_message == "i划算早安":
                 reply_message(reply_token, generate_carousel())
             elif validate_input(user_message):
@@ -175,11 +171,9 @@ def get_group_member_count(group_id):
     url = f"https://api.line.me/v2/bot/group/{group_id}/members/count"
     headers = {"Authorization": f"Bearer {LINE_ACCESS_TOKEN}"}
     response = requests.get(url, headers=headers)
-    print(f"群組 ID: {group_id}, API 回應: {response.text}")  # 新增除錯資訊
     if response.status_code == 200:
         return response.json().get("count", "未知")
     return "未知"
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
