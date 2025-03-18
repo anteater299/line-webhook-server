@@ -47,7 +47,6 @@ def log_message(sheet_name, message_type, recipient, status, response_text, grou
 # 推送訊息 (Push API)
 def push_message(to, messages):
     success_count = 0
-    group_member_count = get_group_member_count(to)
     group_member_count = get_group_member_count(to)  # 取得群組人數
     headers = {
         "Content-Type": "application/json",
@@ -62,7 +61,7 @@ def push_message(to, messages):
     if response.status_code == 200:
         status = "成功"
         success_count = len(messages)
-            else:
+    else:
         status = "失敗"
     log_message("Push_Log", "PUSH", to, status, f"{response.text} | 成功發送 {success_count} 則訊息", group_member_count)
     
